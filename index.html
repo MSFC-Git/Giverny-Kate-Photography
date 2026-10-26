@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Nature and wildlife photography from Ōtepoti Dunedin by Giverny Kate. Prints and gifts printed to order and posted worldwide.">
+<title>Giverny Kate Photography</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Karla:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one quiet column of white space; photographs lead, type stays small and inscriptional (Martin Hill-like restraint). */
+:root{
+  --bg:#f5f6f5; --surface:#ffffff; --fg:#1c2123; --muted:#687174; --line:#dde2e1;
+  --accent:#2c5b60; --accent-fg:#ffffff; --scrim:rgba(14,18,19,.94); --scrim-fg:#eef1f0;
+  --display:"Marcellus","Optima","Candara","Georgia",serif;
+  --body:"Karla","Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+  --maxw:1240px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111415; --surface:#181c1d; --fg:#e7ebea; --muted:#99a3a5; --line:#283032;
+  --accent:#8dbfc3; --accent-fg:#0d1213; --scrim:rgba(5,7,8,.96); --scrim-fg:#eef1f0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111415; --surface:#181c1d; --fg:#e7ebea; --muted:#99a3a5; --line:#283032;
+  --accent:#8dbfc3; --accent-fg:#0d1213; --scrim:rgba(5,7,8,.96); --scrim-fg:#eef1f0; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:var(--maxw);margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;letter-spacing:.01em}
+.eyebrow{font:500 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+p{margin:0}
+.lede{max-width:62ch;color:var(--muted)}
+
+/* header */
+header.site{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 32px;padding-block:28px 22px}
+.brand{text-decoration:none;display:grid;gap:4px}
+.brand b{font:400 clamp(22px,3vw,28px)/1 var(--display);letter-spacing:.22em;text-transform:uppercase}
+.brand span{font:400 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+nav.main{display:flex;flex-wrap:wrap;gap:6px 26px}
+nav.main a{text-decoration:none;font-size:14px;letter-spacing:.06em;color:var(--muted);padding-block:4px;border-bottom:1px solid transparent}
+nav.main a:hover{color:var(--fg)}
+nav.main a[aria-current="page"]{color:var(--fg);border-bottom-color:var(--fg)}
+
+section.view{padding-block:8px 72px}
+section.view[hidden]{display:none}
+
+/* hero carousel */
+.hero{position:relative;background:var(--surface);height:clamp(300px,70vh,780px);overflow:hidden}
+.hero figure{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1.2s ease}
+.hero figure.on{opacity:1}
+.hero img{width:100%;height:100%;object-fit:contain;display:block}
+.hero-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;padding-block:14px 0}
+.cap{font:400 13px/1.4 var(--mono);color:var(--muted);letter-spacing:.04em}
+.cap b{font-weight:500;color:var(--fg)}
+.ctrls{display:flex;align-items:center;gap:4px}
+.ctrls button{width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--line);color:var(--fg)}
+.ctrls button:hover{border-color:var(--fg)}
+.ctrls svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6}
+.counter{font:400 12px var(--mono);color:var(--muted);min-width:56px;text-align:center;font-variant-numeric:tabular-nums}
+
+.intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:32px 64px;padding-block:64px 8px;align-items:end}
+.intro h1{font-size:clamp(28px,4vw,44px);line-height:1.15}
+.intro .lede{font-size:17px}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-size:14px;letter-spacing:.05em;padding:12px 20px;border:1px solid var(--fg)}
+.btn:hover{background:var(--fg);color:var(--bg)}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.btn.solid:hover{filter:brightness(1.08);background:var(--accent);color:var(--accent-fg)}
+
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:64px;padding-top:28px;border-top:1px solid var(--line)}
+.how div{display:grid;gap:8px;align-content:start}
+.how h3{font-size:20px}
+.how p{color:var(--muted);font-size:15px}
+
+/* section heads */
+.head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 40px;padding-block:28px 26px}
+.head h1{font-size:clamp(30px,4vw,42px);line-height:1.1}
+.head .lede{margin-top:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:13px;letter-spacing:.04em;padding:7px 14px;border:1px solid var(--line);color:var(--muted)}
+.chip:hover{color:var(--fg);border-color:var(--muted)}
+.chip[aria-pressed="true"]{color:var(--bg);background:var(--fg);border-color:var(--fg)}
+
+/* gallery masonry */
+.masonry{columns:3 300px;column-gap:14px}
+.masonry button{display:block;width:100%;margin:0 0 14px;break-inside:avoid;position:relative;text-align:left}
+.masonry img{width:100%;display:block;background:var(--line);transition:opacity .25s}
+.masonry button:hover img{opacity:.88}
+.masonry .t{display:block;font:400 12px/1.4 var(--mono);color:var(--muted);padding-top:7px;letter-spacing:.03em}
+
+/* shop grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:34px 18px}
+.card{display:grid;gap:10px;align-content:start;text-align:left}
+.card .stage{position:relative;aspect-ratio:1;max-width:100%;background:#eeece8;overflow:hidden}
+.card .stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s}
+.card .stage img.on{opacity:1}
+.card .stage img.photo{object-fit:cover}
+.dots{display:flex;gap:5px}
+.dots i{width:5px;height:5px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--fg)}
+.card .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.card h3{font-size:18px}
+.card .kind{font:400 12px var(--mono);color:var(--muted);letter-spacing:.03em}
+.card:hover h3{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+
+/* market + about */
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px 64px;align-items:start}
+.prose{display:grid;gap:16px;max-width:62ch}
+.prose h2{font-size:24px;margin-top:14px}
+.prose p{color:var(--muted)}
+.prose strong{color:var(--fg);font-weight:600}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:34px 1fr;gap:12px;counter-increment:s}
+.steps li::before{content:counter(s);font:400 22px/1 var(--display);color:var(--accent);padding-top:2px}
+.steps b{display:block;font-weight:600}
+.steps span{color:var(--muted);font-size:15px}
+.figure{margin:0;display:grid;gap:8px}
+.figure img{width:100%;display:block}
+.note{font:400 12px/1.6 var(--mono);color:var(--muted);letter-spacing:.02em;padding:14px 16px;border:1px solid var(--line)}
+.coords{font:400 12px var(--mono);letter-spacing:.12em;color:var(--muted)}
+
+footer.site{border-top:1px solid var(--line);padding-block:26px 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-size:13px;color:var(--muted)}
+footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
+
+/* overlays */
+.overlay{position:fixed;inset:0;z-index:50;background:var(--scrim);color:var(--scrim-fg);display:flex;flex-direction:column;
+  padding:calc(12px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.overlay[hidden]{display:none}
+.ov-top{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px}
+.ov-top .cap{color:#b7c0c1}
+.ov-top .cap b{color:var(--scrim-fg)}
+.ov-x{width:44px;height:44px;display:grid;place-items:center;color:var(--scrim-fg)}
+.ov-x svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.6;fill:none}
+.lb-stage{flex:1;min-height:0;position:relative;display:grid;place-items:center}
+.lb-stage img{max-width:100%;max-height:100%;object-fit:contain}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:64px;display:grid;place-items:center;color:var(--scrim-fg);opacity:.75}
+.lb-nav:hover{opacity:1}
+.lb-nav svg{width:22px;height:22px;stroke:currentColor;stroke-width:1.5;fill:none}
+.lb-prev{left:0}.lb-next{right:0}
+.ov-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 20px;padding-top:12px}
+.ov-bottom .btn{border-color:var(--scrim-fg);color:var(--scrim-fg)}
+.ov-bottom .btn:hover{background:var(--scrim-fg);color:#111}
+
+/* product view */
+.pv{position:fixed;inset:0;z-index:60;background:var(--bg);overflow-y:auto;
+  padding:calc(10px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(30px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.pv[hidden]{display:none}
+.pv .ov-x{color:var(--fg)}
+.pv-in{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:28px 56px;padding-top:6px}
+.pv-main{display:grid;gap:12px;align-content:start}
+.pv-stage{position:relative;aspect-ratio:1;max-width:100%;background:#eeece8;overflow:hidden}
+.pv-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.pv-stage .lb-nav{color:#2a2f31}
+.pv-thumbs{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.pv-thumbs button{aspect-ratio:1;overflow:hidden;background:#eeece8;outline-offset:2px;border:1px solid transparent}
+.pv-thumbs button[aria-current="true"]{border-color:var(--fg)}
+.pv-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.pv-side{display:grid;gap:18px;align-content:start;position:sticky;top:10px}
+.pv-side h2{font-size:clamp(28px,3.4vw,38px);line-height:1.1}
+.plist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.plist button{width:100%;display:flex;justify-content:space-between;align-items:center;padding:12px 2px;border-bottom:1px solid var(--line);text-align:left;font-size:15px}
+.plist button span{font:400 12px var(--mono);color:var(--muted)}
+.plist button[aria-current="true"]{font-weight:600}
+.plist button[aria-current="true"] span{color:var(--accent)}
+.small{font-size:13px;color:var(--muted)}
+
+/* stall slideshow */
+.show{position:fixed;inset:0;z-index:70;background:#0c0f10;color:#eef1f0;display:grid;grid-template-rows:1fr auto}
+.show[hidden]{display:none}
+.show .frame{position:relative;min-height:0}
+.show figure{position:absolute;inset:0;margin:0;display:grid;place-items:center;opacity:0;transition:opacity 1.4s}
+.show figure.on{opacity:1}
+.show figure img{max-width:100%;max-height:100%;object-fit:contain}
+.show .strip{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 30px;
+  padding:16px max(20px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px));border-top:1px solid #253033}
+.show .strip b{font:400 clamp(18px,2.4vw,28px)/1.2 var(--display);letter-spacing:.14em;text-transform:uppercase}
+.show .strip span{font:400 clamp(13px,1.4vw,17px)/1.4 var(--mono);color:#aab4b6}
+.show .ov-x{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));right:max(10px,env(safe-area-inset-right,0px));z-index:2;color:#eef1f0}
+
+@media (max-width:820px){
+  .intro,.cols,.pv-in{grid-template-columns:minmax(0,1fr)}
+  .how{grid-template-columns:minmax(0,1fr)}
+  .pv-side{position:static}
+  .pv-thumbs{grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+  header.site{align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero figure,.card .stage img,.show figure{transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="site">
+    <a class="brand" href="#home" data-go="home"><b>Giverny Kate</b><span>Nature &amp; wildlife photography · Ōtepoti Dunedin</span></a>
+    <nav class="main" aria-label="Main">
+      <a href="#home" data-go="home">Home</a>
+      <a href="#gallery" data-go="gallery">Galleries</a>
+      <a href="#shop" data-go="shop">Prints &amp; gifts</a>
+      <a href="#market" data-go="market">At the market</a>
+      <a href="#about" data-go="about">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section class="view" id="v-home">
+      <div class="hero" id="hero" aria-roledescription="carousel" aria-label="Featured photographs"></div>
+      <div class="hero-bar">
+        <p class="cap" id="heroCap"></p>
+        <div class="ctrls">
+          <button id="heroPrev" aria-label="Previous photograph"><svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5"/></svg></button>
+          <span class="counter" id="heroCount"></span>
+          <button id="heroNext" aria-label="Next photograph"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5"/></svg></button>
+          <button id="heroPause" aria-label="Pause slideshow"><svg viewBox="0 0 16 16" id="pauseIcon"><path d="M5.5 3v10M10.5 3v10"/></svg></button>
+        </div>
+      </div>
+
+      <div class="intro">
+        <div>
+          <p class="eyebrow">Otago coast &amp; Aotearoa New Zealand</p>
+          <h1 style="margin-top:12px">Albatross, sea lions, takahē and bellbirds, photographed close to home.</h1>
+        </div>
+        <div>
+          <p class="lede">Every photograph here is available on canvas and framed prints, mugs, tote bags, cushions and cards. Each item is printed when you order it and posted to your home, so there is nothing to carry back on board.</p>
+          <div class="links">
+            <a class="btn solid" href="#shop" data-go="shop">Browse prints &amp; gifts</a>
+            <a class="btn" href="#gallery" data-go="gallery">View the galleries</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="how">
+        <div><p class="eyebrow">Choose</p><h3>Pick a photograph</h3><p>Browse at the stall or on your phone. Every image comes on six kinds of product.</p></div>
+        <div><p class="eyebrow">Order</p><h3>Order online</h3><p>Checkout is handled by Redbubble, a print-on-demand service. Pay in your own currency.</p></div>
+        <div><p class="eyebrow">Receive</p><h3>Delivered home</h3><p>Your item is printed to order and posted to your address. No luggage space needed.</p></div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="view" id="v-gallery" hidden>
+      <div class="head">
+        <div>
+          <p class="eyebrow">Galleries</p>
+          <h1 style="margin-top:8px">The photographs</h1>
+          <p class="lede">Select any image to view it full size, or to see it on prints and gifts.</p>
+        </div>
+        <div class="chips" id="galChips" role="group" aria-label="Filter by collection"></div>
+      </div>
+      <div class="masonry" id="masonry"></div>
+    </section>
+
+    <!-- SHOP -->
+    <section class="view" id="v-shop" hidden>
+      <div class="head">
+        <div>
+          <p class="eyebrow">Prints &amp; gifts</p>
+          <h1 style="margin-top:8px">Choose a photograph, then a product</h1>
+          <p class="lede">Printed to order and posted worldwide through Redbubble. Mock-ups are illustrations; Redbubble shows the exact product, sizes and price at checkout.</p>
+        </div>
+        <div style="display:grid;gap:10px">
+          <div class="chips" id="prodChips" role="group" aria-label="Filter by product"></div>
+          <div class="chips" id="shopChips" role="group" aria-label="Filter by collection"></div>
+        </div>
+      </div>
+      <div class="grid" id="shopGrid"></div>
+    </section>
+
+    <!-- MARKET -->
+    <section class="view" id="v-market" hidden>
+      <div class="head">
+        <div>
+          <p class="eyebrow">Port Chalmers Cruise Ship Markets</p>
+          <h1 style="margin-top:8px">Visiting on a cruise?</h1>
+          <p class="coords" style="margin-top:10px">PORT CHALMERS · OTAGO HARBOUR · 45°49′S 170°37′E</p>
+        </div>
+        <button class="btn solid" id="startShow">Start stall slideshow</button>
+      </div>
+      <div class="cols">
+        <div class="prose">
+          <p>You'll find Giverny Kate's stall at the Port Chalmers Cruise Ship Markets on cruise ship days. The prints and samples at the stall are just a selection. Every photograph on this site can be ordered on any of the products below, and none of it needs to fit in your suitcase.</p>
+          <h2>How ordering works</h2>
+          <ol class="steps">
+            <li><div><b>Find a photograph you like</b><span>At the stall, or in the galleries on this site.</span></div></li>
+            <li><div><b>Choose the product</b><span>Canvas print, framed print, coffee mug, tote bag, cushion or greeting card.</span></div></li>
+            <li><div><b>Order through Redbubble</b><span>Redbubble prints your item when you order and posts it to your home address. Pay by card in your own currency.</span></div></li>
+          </ol>
+          <div class="links"><a class="btn" href="#shop" data-go="shop">Go to prints &amp; gifts</a></div>
+        </div>
+        <figure class="figure">
+          <img src="products-2/penguin-leaping-1-tote.jpg" alt="Leaping penguin photograph printed on a canvas tote bag" loading="lazy">
+          <figcaption class="cap">Leaping Penguin · tote bag (illustration)</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="view" id="v-about" hidden>
+      <div class="head"><div><p class="eyebrow">About</p><h1 style="margin-top:8px">Giverny Kate</h1></div></div>
+      <div class="cols">
+        <div class="prose">
+          <p>Giverny Kate is a nature and wildlife photographer based in Ōtepoti Dunedin, on New Zealand's Otago coast. Her work follows the animals and places close to home: albatross and petrels riding the swell, sea lion pups on the beach, bellbirds in the bush, and the light over Otago's hills.</p>
+          <h2>Buying a print or gift</h2>
+          <p>Her photographs are printed to order through her <a href="https://www.redbubble.com/people/GivernyKate/shop" target="_blank" rel="noopener">Redbubble shop</a> and posted worldwide.</p>
+          <h2>Contact</h2>
+          <p>Visit the stall at the Port Chalmers Cruise Ship Markets, or message her through <a href="https://www.redbubble.com/people/GivernyKate/shop" target="_blank" rel="noopener">Redbubble</a>.</p>
+        </div>
+        <figure class="figure">
+          <img src="photos/babty-seal-snifs-camera-bag.jpg" alt="A sea lion pup sniffing a red camera bag on the sand" loading="lazy">
+          <figcaption class="cap">A curious pup checks the camera bag</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <span>© Giverny Kate Photography · All photographs are the photographer's own and may not be reproduced without permission.</span>
+    <a href="https://www.redbubble.com/people/GivernyKate/shop" target="_blank" rel="noopener">Redbubble shop ↗</a>
+  </footer>
+</div>
+
+<!-- Lightbox -->
+<div class="overlay" id="lb" hidden role="dialog" aria-modal="true" aria-label="Photograph viewer">
+  <div class="ov-top"><p class="cap" id="lbCap"></p><button class="ov-x" id="lbClose" aria-label="Close"><svg viewBox="0 0 20 20"><path d="M4 4l12 12M16 4 4 16"/></svg></button></div>
+  <div class="lb-stage">
+    <img id="lbImg" alt="">
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photograph"><svg viewBox="0 0 22 22"><path d="M14 4 7 11l7 7"/></svg></button>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next photograph"><svg viewBox="0 0 22 22"><path d="m8 4 7 7-7 7"/></svg></button>
+  </div>
+  <div class="ov-bottom"><span class="cap" id="lbCount"></span><button class="btn" id="lbShop">See it on prints &amp; gifts</button></div>
+</div>
+
+<!-- Product view -->
+<div class="pv" id="pv" hidden role="dialog" aria-modal="true" aria-label="Product view">
+  <div class="wrap" style="display:flex;justify-content:flex-end"><button class="ov-x" id="pvClose" aria-label="Close"><svg viewBox="0 0 20 20"><path d="M4 4l12 12M16 4 4 16"/></svg></button></div>
+  <div class="pv-in">
+    <div class="pv-main">
+      <div class="pv-stage">
+        <img id="pvImg" alt="">
+        <button class="lb-nav lb-prev" id="pvPrev" aria-label="Previous view"><svg viewBox="0 0 22 22"><path d="M14 4 7 11l7 7"/></svg></button>
+        <button class="lb-nav lb-next" id="pvNext" aria-label="Next view"><svg viewBox="0 0 22 22"><path d="m8 4 7 7-7 7"/></svg></button>
+      </div>
+      <div class="pv-thumbs" id="pvThumbs"></div>
+    </div>
+    <div class="pv-side">
+      <div><p class="eyebrow" id="pvCol"></p><h2 id="pvTitle" style="margin-top:8px"></h2></div>
+      <ul class="plist" id="pvList"></ul>
+      <a class="btn solid" id="pvBuy" href="#" target="_blank" rel="noopener" style="justify-content:center">Order on Redbubble ↗</a>
+      <p class="small">Opens Redbubble in a new tab. Your item is printed when you order and posted to your home address. Sizes, options and price are shown there.</p>
+      <p class="small">Product images on this page are illustrations made from the photograph.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Stall slideshow -->
+<div class="show" id="show" hidden role="dialog" aria-modal="true" aria-label="Stall slideshow">
+  <button class="ov-x" id="showClose" aria-label="Close slideshow"><svg viewBox="0 0 20 20"><path d="M4 4l12 12M16 4 4 16"/></svg></button>
+  <div class="frame" id="showFrame"></div>
+  <div class="strip"><b>Giverny Kate Photography</b><span id="showCap">Every photograph on every product · printed to order and posted to your home</span></div>
+</div>
+
+<script>
+/* ---------- CONTENT (edit here) ---------- */
+/* SHOP_URL: where "Order" buttons go. Give a photo its own `buy` link to point at a specific Redbubble (or later Shopify) product. */
+const SHOP_URL = "https://www.redbubble.com/people/GivernyKate/shop";
+
+const COLLECTIONS = {
+  sea:   "Seabirds & shore",
+  seals: "Seals & sea lions",
+  bush:  "Forest & field birds",
+  land:  "Landscapes"
+};
+
+const PHOTOS = [
+  {s:"penguin-leaping-1",            t:"Leaping Penguin",        c:"sea"},
+  {s:"takahe-eats-its-own-wing",     t:"Takahē Preening",        c:"bush"},
+  {s:"albatross-1",                  t:"Albatross",              c:"sea"},
+  {s:"bellbird-2",                   t:"Korimako · Bellbird II", c:"bush"},
+  {s:"sly-seal-in-water",            t:"Sly Seal",               c:"seals"},
+  {s:"sheep-at-sunset-1",            t:"Sheep at Sunset",        c:"land"},
+  {s:"baby-seal-looking-1",          t:"Resting Pup",            c:"seals"},
+  {s:"two-birds-one-fish",           t:"Two Birds, One Fish",    c:"sea"},
+  {s:"pohutakawa-reflection-1",      t:"Pōhutukawa Reflection",  c:"land"},
+  {s:"albatross-in-waves-1",         t:"Albatross in the Swell", c:"sea"},
+  {s:"babty-seal-snifs-camera-bag",  t:"Curious Pup",            c:"seals"},
+  {s:"bellbird-1",                   t:"Korimako · Bellbird I",  c:"bush"},
+  {s:"fantail-in-rain",              t:"Fantail in the Rain",    c:"bush"},
+  {s:"leopard-seal-1",               t:"Leopard Seal",           c:"seals"},
+  {s:"bird-waves-1",                 t:"Over the Breakers",      c:"sea"},
+  {s:"takahe-feathers-1",            t:"Takahē Feathers",        c:"bush"},
+  {s:"seal-beach-person-waves-1",    t:"Sea Lion in the Dunes",  c:"seals"},
+  {s:"hawky-thing-1",                t:"Hawk on the Wing",       c:"bush"},
+  {s:"floating-bird-with-yellow-things", t:"Afloat",             c:"sea"},
+  {s:"ferny-thing",                  t:"Fern Fronds",            c:"land"},
+  {s:"bellbird-3",                   t:"Korimako · Bellbird III",c:"bush"},
+  {s:"seal-in-field-1",              t:"Pup in the Grass I",     c:"seals"},
+  {s:"birdy-bird-bird-1",            t:"On the Sand",            c:"sea"},
+  {s:"bird-in-long-brown-grass",     t:"In the Tussock",         c:"bush"},
+  {s:"stone-path-1",                 t:"Bush Track",             c:"land"},
+  {s:"seal-in-field-2",              t:"Pup in the Grass II",    c:"seals"}
+];
+
+const PRODUCTS = [
+  {k:"canvas",  n:"Canvas print"},
+  {k:"framed",  n:"Framed print"},
+  {k:"mug",     n:"Coffee mug"},
+  {k:"tote",    n:"Tote bag"},
+  {k:"cushion", n:"Cushion"},
+  {k:"card",    n:"Greeting card"}
+];
+
+const HERO = ["penguin-leaping-1","takahe-eats-its-own-wing","albatross-1","bellbird-2","sly-seal-in-water","sheep-at-sunset-1","baby-seal-looking-1","two-birds-one-fish","pohutakawa-reflection-1"];
+
+/* ---------- helpers ---------- */
+const $ = id => document.getElementById(id);
+const photo = s => `photos/${s}.jpg`;
+const thumb = s => `thumbs/${s}.jpg`;
+const merch = (s,k) => `${["canvas","framed","mug"].includes(k)?"products-1":"products-2"}/${s}-${k}.jpg`;
+const bySlug = Object.fromEntries(PHOTOS.map(p=>[p.s,p]));
+const buyUrl = p => p.buy || SHOP_URL;
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+/* ---------- views ---------- */
+const VIEWS = ["home","gallery","shop","market","about"];
+function show(v, scroll=true){
+  if(!VIEWS.includes(v)) v="home";
+  VIEWS.forEach(x => $("v-"+x).hidden = x!==v);
+  document.querySelectorAll("nav.main a").forEach(a=>a.setAttribute("aria-current", a.dataset.go===v ? "page":"false"));
+  try{ history.replaceState(null,"","#"+v) }catch(e){}
+  if(scroll) window.scrollTo({top:0});
+}
+document.addEventListener("click", e=>{
+  const a = e.target.closest("[data-go]");
+  if(a){ e.preventDefault(); closeAll(); show(a.dataset.go); }
+});
+
+/* ---------- hero carousel ---------- */
+let hi=0, hTimer=null, hPaused=false;
+const hero=$("hero");
+hero.innerHTML = HERO.map((s,i)=>`<figure class="${i?"":"on"}" aria-hidden="${i?"true":"false"}"><img src="${photo(s)}" alt="${esc(bySlug[s].t)}" ${i>1?'loading="lazy"':""}></figure>`).join("");
+const hFigs=[...hero.children];
+function heroGo(n){
+  hFigs[hi].classList.remove("on"); hFigs[hi].setAttribute("aria-hidden","true");
+  hi=(n+hFigs.length)%hFigs.length;
+  hFigs[hi].classList.add("on"); hFigs[hi].setAttribute("aria-hidden","false");
+  const p=bySlug[HERO[hi]];
+  $("heroCap").innerHTML=`<b>${esc(p.t)}</b> · ${COLLECTIONS[p.c]}`;
+  $("heroCount").textContent=`${hi+1} / ${hFigs.length}`;
+}
+function heroPlay(){ clearInterval(hTimer); if(!hPaused && !reduced) hTimer=setInterval(()=>heroGo(hi+1),5500); }
+$("heroPrev").onclick=()=>{heroGo(hi-1);heroPlay()};
+$("heroNext").onclick=()=>{heroGo(hi+1);heroPlay()};
+$("heroPause").onclick=()=>{
+  hPaused=!hPaused; heroPlay();
+  $("heroPause").setAttribute("aria-label", hPaused?"Play slideshow":"Pause slideshow");
+  $("pauseIcon").innerHTML = hPaused ? '<path d="M5 3l8 5-8 5z"/>' : '<path d="M5.5 3v10M10.5 3v10"/>';
+};
+let swiped=false;
+hero.addEventListener("touchmove",()=>swiped=true,{passive:true});
+hero.addEventListener("click",()=>{ if(swiped){swiped=false;return;} openLB(PHOTOS.findIndex(p=>p.s===HERO[hi])); });
+hero.addEventListener("touchstart",()=>swiped=false,{passive:true});
+hero.style.cursor="zoom-in";
+heroGo(0); if(reduced){hPaused=true; $("pauseIcon").innerHTML='<path d="M5 3l8 5-8 5z"/>';} heroPlay();
+
+/* ---------- chips ---------- */
+function chips(el, items, onPick){
+  el.innerHTML = items.map(([v,l],i)=>`<button class="chip" data-v="${v}" aria-pressed="${i?"false":"true"}">${esc(l)}</button>`).join("");
+  el.addEventListener("click",e=>{
+    const b=e.target.closest(".chip"); if(!b) return;
+    el.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", c===b?"true":"false"));
+    onPick(b.dataset.v);
+  });
+}
+const colItems=[["all","All"],...Object.entries(COLLECTIONS)];
+
+/* ---------- gallery ---------- */
+let galFilter="all";
+function renderGallery(){
+  const list=PHOTOS.filter(p=>galFilter==="all"||p.c===galFilter);
+  $("masonry").innerHTML=list.map(p=>`<button data-s="${p.s}" aria-label="View ${esc(p.t)}"><img src="${thumb(p.s)}" alt="${esc(p.t)}" loading="lazy"><span class="t">${esc(p.t)}</span></button>`).join("");
+}
+chips($("galChips"), colItems, v=>{galFilter=v;renderGallery()});
+$("masonry").addEventListener("click",e=>{const b=e.target.closest("button[data-s]"); if(b) openLB(PHOTOS.findIndex(p=>p.s===b.dataset.s), galList());});
+const galList=()=>PHOTOS.filter(p=>galFilter==="all"||p.c===galFilter).map(p=>p.s);
+renderGallery();
+
+/* ---------- lightbox ---------- */
+let lbList=PHOTOS.map(p=>p.s), lbi=0;
+function openLB(i, list){
+  lbList = list || PHOTOS.map(p=>p.s);
+  lbi = Math.max(0, lbList.indexOf(PHOTOS[i].s));
+  lbShow(); $("lb").hidden=false; document.body.style.overflow="hidden"; $("lbClose").focus();
+}
+function lbShow(){
+  const p=bySlug[lbList[lbi]];
+  $("lbImg").src=photo(p.s); $("lbImg").alt=p.t;
+  $("lbCap").innerHTML=`<b>${esc(p.t)}</b> · ${COLLECTIONS[p.c]}`;
+  $("lbCount").textContent=`${lbi+1} / ${lbList.length}`;
+}
+$("lbPrev").onclick=()=>{lbi=(lbi-1+lbList.length)%lbList.length;lbShow()};
+$("lbNext").onclick=()=>{lbi=(lbi+1)%lbList.length;lbShow()};
+$("lbClose").onclick=closeAll;
+$("lbShop").onclick=()=>{const s=lbList[lbi]; $("lb").hidden=true; openPV(s,0);};
+
+/* ---------- shop ---------- */
+let shopCol="all", shopProd="all";
+chips($("prodChips"), [["all","All products"],...PRODUCTS.map(p=>[p.k,p.n])], v=>{shopProd=v;renderShop()});
+chips($("shopChips"), colItems, v=>{shopCol=v;renderShop()});
+function renderShop(){
+  const list=PHOTOS.filter(p=>shopCol==="all"||p.c===shopCol);
+  $("shopGrid").innerHTML=list.map((p,idx)=>{
+    if(shopProd!=="all"){
+      const pr=PRODUCTS.find(x=>x.k===shopProd);
+      return `<button class="card" data-s="${p.s}" data-k="${pr.k}"><div class="stage"><img class="on" src="${merch(p.s,pr.k)}" alt="${esc(p.t)} on a ${pr.n.toLowerCase()}" loading="lazy"></div>
+        <div class="row"><h3>${esc(p.t)}</h3><span class="kind">${pr.n}</span></div></button>`;
+    }
+    const imgs=[`<img class="photo on" src="${thumb(p.s)}" alt="${esc(p.t)}" loading="lazy">`,
+      ...PRODUCTS.map(pr=>`<img src="${merch(p.s,pr.k)}" alt="${esc(p.t)} on a ${pr.n.toLowerCase()}" loading="lazy">`)].join("");
+    return `<button class="card" data-s="${p.s}" data-cycle="${idx}"><div class="stage">${imgs}</div>
+      <div class="row"><h3>${esc(p.t)}</h3><span class="kind">6 products</span></div>
+      <div class="dots">${"<i></i>".repeat(7)}</div></button>`;
+  }).join("");
+  document.querySelectorAll(".card[data-cycle] .dots i:first-child").forEach(i=>i.classList.add("on"));
+}
+$("shopGrid").addEventListener("click",e=>{
+  const c=e.target.closest(".card"); if(!c) return;
+  const k=c.dataset.k; openPV(c.dataset.s, k ? PRODUCTS.findIndex(p=>p.k===k)+1 : 1);
+});
+renderShop();
+/* one shared timer advances every card carousel, staggered so they don't all change at once */
+let tick=0;
+if(!reduced) setInterval(()=>{
+  if($("v-shop").hidden) return; tick++;
+  document.querySelectorAll(".card[data-cycle]").forEach(card=>{
+    if((tick + +card.dataset.cycle) % 3) return;
+    const imgs=card.querySelectorAll(".stage img"), dots=card.querySelectorAll(".dots i");
+    let cur=[...imgs].findIndex(i=>i.classList.contains("on"));
+    imgs[cur].classList.remove("on"); dots[cur].classList.remove("on");
+    cur=(cur+1)%imgs.length; imgs[cur].classList.add("on"); dots[cur].classList.add("on");
+  });
+},1100);
+
+/* ---------- product view ---------- */
+let pvS=null, pvi=0;
+const pvViews = s => [{src:photo(s), name:"Photograph"}, ...PRODUCTS.map(p=>({src:merch(s,p.k), name:p.n}))];
+function openPV(s, i=0){
+  pvS=s; pvi=i; const p=bySlug[s];
+  $("pvTitle").textContent=p.t; $("pvCol").textContent=COLLECTIONS[p.c];
+  $("pvBuy").href=buyUrl(p);
+  const v=pvViews(s);
+  $("pvThumbs").innerHTML=v.map((x,j)=>`<button data-j="${j}" aria-label="${x.name}"><img src="${j?x.src:thumb(s)}" alt=""></button>`).join("");
+  $("pvList").innerHTML=PRODUCTS.map((pr,j)=>`<li><button data-j="${j+1}">${pr.n}<span>View</span></button></li>`).join("");
+  pvShow(); $("pv").hidden=false; $("pv").scrollTop=0; document.body.style.overflow="hidden"; $("pvClose").focus();
+}
+function pvShow(){
+  const v=pvViews(pvS);
+  $("pvImg").src=v[pvi].src; $("pvImg").alt=`${bySlug[pvS].t}: ${v[pvi].name}`;
+  $("pvImg").style.objectFit = pvi===0 ? "contain" : "cover";
+  $("pvThumbs").querySelectorAll("button").forEach((b,j)=>b.setAttribute("aria-current", j===pvi?"true":"false"));
+  $("pvList").querySelectorAll("button").forEach(b=>{const on=+b.dataset.j===pvi; b.setAttribute("aria-current",on?"true":"false"); b.querySelector("span").textContent=on?"Showing":"View";});
+}
+["pvThumbs","pvList"].forEach(id=>$(id).addEventListener("click",e=>{const b=e.target.closest("button[data-j]"); if(b){pvi=+b.dataset.j;pvShow();}}));
+$("pvPrev").onclick=()=>{pvi=(pvi+6)%7;pvShow()};
+$("pvNext").onclick=()=>{pvi=(pvi+1)%7;pvShow()};
+$("pvClose").onclick=closeAll;
+
+/* ---------- stall slideshow: photo, then that photo on two products ---------- */
+let showTimer=null, si=0, slides=[];
+function buildSlides(){
+  slides=[]; const ks=PRODUCTS.map(p=>p.k);
+  PHOTOS.forEach((p,i)=>{
+    slides.push({src:photo(p.s), cap:`${p.t} · ${COLLECTIONS[p.c]}`});
+    const a=ks[i%6], b=ks[(i+3)%6];
+    [a,b].forEach(k=>slides.push({src:merch(p.s,k), cap:`${p.t} · ${PRODUCTS.find(x=>x.k===k).n} · printed to order and posted home`}));
+  });
+}
+function showGo(n){
+  const f=$("showFrame");
+  si=(n+slides.length)%slides.length;
+  const next=document.createElement("figure"); next.innerHTML=`<img src="${slides[si].src}" alt="">`;
+  f.appendChild(next); requestAnimationFrame(()=>next.classList.add("on"));
+  [...f.children].slice(0,-2).forEach(x=>x.remove());
+  if(f.children.length>1) f.children[0].classList.remove("on");
+  $("showCap").textContent=slides[si].cap;
+  const pre=new Image(); pre.src=slides[(si+1)%slides.length].src;
+}
+$("startShow").onclick=()=>{
+  buildSlides(); $("show").hidden=false; document.body.style.overflow="hidden"; showGo(0);
+  clearInterval(showTimer); showTimer=setInterval(()=>showGo(si+1), 4500);
+  try{ const r=$("show").requestFullscreen && $("show").requestFullscreen(); if(r&&r.catch) r.catch(()=>{}); }catch(e){}
+};
+$("showClose").onclick=closeAll;
+$("show").addEventListener("click",e=>{ if(!e.target.closest(".ov-x")) showGo(si+1); });
+
+/* ---------- shared ---------- */
+function closeAll(){
+  ["lb","pv","show"].forEach(id=>$(id).hidden=true);
+  clearInterval(showTimer); document.body.style.overflow="";
+  try{ if(document.fullscreenElement) document.exitFullscreen().catch(()=>{}); }catch(e){}
+}
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape") closeAll();
+  if(!$("lb").hidden){ if(e.key==="ArrowLeft")$("lbPrev").click(); if(e.key==="ArrowRight")$("lbNext").click(); }
+  if(!$("pv").hidden){ if(e.key==="ArrowLeft")$("pvPrev").click(); if(e.key==="ArrowRight")$("pvNext").click(); }
+  if(!$("show").hidden){ if(e.key==="ArrowRight"||e.key===" "){e.preventDefault();showGo(si+1);} if(e.key==="ArrowLeft")showGo(si-1); }
+});
+/* swipe on touch for lightbox and product view */
+function swipe(el, l, r){ let x=null; el.addEventListener("touchstart",e=>x=e.touches[0].clientX,{passive:true});
+  el.addEventListener("touchend",e=>{ if(x===null)return; const d=e.changedTouches[0].clientX-x; if(Math.abs(d)>45)(d<0?r:l)(); x=null; }); }
+swipe(document.querySelector(".lb-stage"), ()=>$("lbPrev").click(), ()=>$("lbNext").click());
+swipe(document.querySelector(".pv-stage"), ()=>$("pvPrev").click(), ()=>$("pvNext").click());
+swipe(hero, ()=>$("heroPrev").click(), ()=>$("heroNext").click());
+
+show((location.hash||"#home").slice(1), false);
+</script>
+
+</body>
+</html>
