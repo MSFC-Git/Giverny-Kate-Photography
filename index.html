@@ -192,6 +192,15 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
 .ov-top .prov,.ov-top .prov i{color:#b7c0c1}
 .show .strip .prov{font-size:clamp(12px,1.2vw,15px);color:#8f9a9c;margin-top:4px}
 
+/* deliver to my home: gift section */
+.gift{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 64px;margin-top:72px;padding-top:32px;border-top:1px solid var(--line);scroll-margin-top:20px}
+.gift h2{font-size:clamp(24px,3vw,32px);line-height:1.15}
+.giftnote{border:1px solid var(--line);padding:12px 14px}
+.giftnote summary{cursor:pointer;font-weight:600;font-size:15px}
+.giftnote ol{margin:10px 0 2px;padding-left:20px;display:grid;gap:6px;color:var(--muted);font-size:14px}
+.giftnote b{color:var(--fg)}
+@media (max-width:820px){.gift{grid-template-columns:minmax(0,1fr)}}
+
 /* take home today */
 .today-intro{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid var(--line)}
 .today-intro div{display:grid;gap:6px;align-content:start}
@@ -254,8 +263,8 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
     <nav class="main" aria-label="Main">
       <a href="#home" data-go="home">Home</a>
       <a href="#gallery" data-go="gallery">Galleries</a>
-      <a href="#shop" data-go="shop">Prints &amp; gifts</a>
       <a href="#today" data-go="today">Take home today</a>
+      <a href="#shop" data-go="shop">Deliver to my home</a>
       <a href="#market" data-go="market">At the market</a>
       <a href="#about" data-go="about">About</a>
     </nav>
@@ -283,7 +292,7 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
         <div>
           <p class="lede">Every photograph here is available on canvas and framed prints, mugs, tote bags, cushions and cards. Each item is printed when you order it and posted to your home, so there is nothing to carry back on board.</p>
           <div class="links">
-            <a class="btn solid" href="#shop" data-go="shop">Browse prints &amp; gifts</a>
+            <a class="btn solid" href="#shop" data-go="shop">Deliver to my home</a>
             <a class="btn" href="#gallery" data-go="gallery">View the galleries</a>
           </div>
         </div>
@@ -292,7 +301,7 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
       <div class="how">
         <div><p class="eyebrow">Choose</p><h3>Pick a photograph</h3><p>Browse at the stall or on your phone. Every image comes on six kinds of product.</p></div>
         <div><p class="eyebrow">Order</p><h3>Order online</h3><p>Checkout is handled by Redbubble, a print-on-demand service. Pay in your own currency.</p></div>
-        <div><p class="eyebrow">Receive</p><h3>Delivered home</h3><p>Your item is printed to order and posted to your address. No luggage space needed.</p></div>
+        <div><p class="eyebrow">Receive</p><h3>Delivered home</h3><p>Your item is printed to order and posted to your address, or to someone you'd like to surprise. No luggage space needed.</p></div>
       </div>
     </section>
 
@@ -302,7 +311,7 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
         <div>
           <p class="eyebrow">Galleries</p>
           <h1 style="margin-top:8px">The photographs</h1>
-          <p class="lede">Select any image to view it full size, or to see it on prints and gifts.</p>
+          <p class="lede">Select any image to view it full size, or to see it on products we can deliver to your home.</p>
         </div>
         <div class="chips" id="galChips" role="group" aria-label="Filter by collection"></div>
       </div>
@@ -313,9 +322,10 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
     <section class="view" id="v-shop" hidden>
       <div class="head">
         <div>
-          <p class="eyebrow">Prints &amp; gifts</p>
-          <h1 style="margin-top:8px">Choose a photograph, then a product</h1>
-          <p class="lede">Printed to order and posted worldwide through Redbubble. Mock-ups are illustrations; Redbubble shows the exact product, sizes and price at checkout.</p>
+          <p class="eyebrow">Deliver to my home</p>
+          <h1 style="margin-top:8px">Nothing to carry back on board</h1>
+          <p class="lede">Order any photograph on a canvas, framed print, mug, tote, cushion or card, and it's posted to your home, or straight to someone you'd like to surprise. Printed to order through Redbubble. Mock-ups are illustrations; Redbubble shows the exact product, sizes and price at checkout.</p>
+          <p style="margin-top:14px"><a class="btn" href="#gift" id="giftJump">Sending it as a gift?</a></p>
         </div>
         <div style="display:grid;gap:10px">
           <div class="chips" id="prodChips" role="group" aria-label="Filter by product"></div>
@@ -323,6 +333,19 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
         </div>
       </div>
       <div class="grid" id="shopGrid"></div>
+
+      <div class="gift" id="gift">
+        <div>
+          <p class="eyebrow">Sending it as a gift</p>
+          <h2 style="margin-top:8px">Post it straight to family or friends</h2>
+          <p class="lede" style="margin-top:10px">A print of the place you've just visited makes a good present. Order it here and have it posted to anyone, at any address.</p>
+        </div>
+        <ol class="steps">
+          <li><div><b>Choose the photograph and the product</b><span>Select any card above, then open it on Redbubble.</span></div></li>
+          <li><div><b>Enter their name and address for delivery</b><span>At checkout, type the recipient's details as the delivery address.</span></div></li>
+          <li><div><b>Enter your own billing details</b><span>Untick the box that copies the delivery address into billing, then add your own name and card address.</span></div></li>
+        </ol>
+      </div>
     </section>
 
     <!-- TAKE HOME TODAY -->
@@ -374,9 +397,9 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
           <ol class="steps">
             <li><div><b>Find a photograph you like</b><span>At the stall, or in the galleries on this site.</span></div></li>
             <li><div><b>Choose the product</b><span>Canvas print, framed print, coffee mug, tote bag, cushion or greeting card.</span></div></li>
-            <li><div><b>Order through Redbubble</b><span>Redbubble prints your item when you order and posts it to your home address. Pay by card in your own currency.</span></div></li>
+            <li><div><b>Order through Redbubble</b><span>Redbubble prints your item when you order and posts it to your home, or to anyone you'd like to send it to as a gift. Pay by card in your own currency.</span></div></li>
           </ol>
-          <div class="links"><a class="btn" href="#shop" data-go="shop">Go to prints &amp; gifts</a><a class="btn" href="#today" data-go="today">Take home today</a></div>
+          <div class="links"><a class="btn" href="#shop" data-go="shop">Deliver to my home</a><a class="btn" href="#today" data-go="today">Take home today</a></div>
           <p class="small" style="margin-top:6px">Stallholder: <a href="#qr" data-go="qr">print QR cards for the table</a>.</p>
         </div>
         <figure class="figure">
@@ -419,7 +442,7 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
     <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photograph"><svg viewBox="0 0 22 22"><path d="M14 4 7 11l7 7"/></svg></button>
     <button class="lb-nav lb-next" id="lbNext" aria-label="Next photograph"><svg viewBox="0 0 22 22"><path d="m8 4 7 7-7 7"/></svg></button>
   </div>
-  <div class="ov-bottom"><span class="cap" id="lbCount"></span><button class="btn" id="lbShop">See it on prints &amp; gifts</button></div>
+  <div class="ov-bottom"><span class="cap" id="lbCount"></span><button class="btn" id="lbShop">Deliver it to my home</button></div>
 </div>
 
 <!-- Product view -->
@@ -438,7 +461,15 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
       <div><p class="eyebrow" id="pvCol"></p><h2 id="pvTitle" style="margin-top:8px"></h2><p class="prov" id="pvProv" style="margin-top:8px"></p></div>
       <ul class="plist" id="pvList"></ul>
       <a class="btn solid" id="pvBuy" href="#" target="_blank" rel="noopener" style="justify-content:center">Order on Redbubble ↗</a>
-      <p class="small">Opens Redbubble in a new tab. Your item is printed when you order and posted to your home address. Sizes, options and price are shown there.</p>
+      <details class="giftnote">
+        <summary>Send as a gift</summary>
+        <ol>
+          <li>Click <b>Order on Redbubble</b> above.</li>
+          <li>At checkout, enter the recipient's name and address for delivery.</li>
+          <li>Untick the box that copies the delivery address into billing, then enter your own billing details.</li>
+        </ol>
+      </details>
+      <p class="small">Opens Redbubble in a new tab. Your item is printed when you order and posted to the address you choose. Sizes, options and price are shown there.</p>
       <p class="small">Product images on this page are illustrations made from the photograph.</p>
     </div>
   </div>
@@ -726,6 +757,8 @@ $("startShow").onclick=()=>{
 };
 $("showClose").onclick=closeAll;
 $("show").addEventListener("click",e=>{ if(!e.target.closest(".ov-x")) showGo(si+1); });
+
+$("giftJump").addEventListener("click",e=>{e.preventDefault(); $("gift").scrollIntoView({behavior: reduced?"auto":"smooth"});});
 
 /* ---------- take home today ---------- */
 let todayK="all";
