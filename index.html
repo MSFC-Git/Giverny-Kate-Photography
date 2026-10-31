@@ -56,7 +56,7 @@ section.view[hidden]{display:none}
 .hero{position:relative;background:var(--surface);height:clamp(300px,70vh,780px);overflow:hidden}
 .hero figure{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1.2s ease}
 .hero figure.on{opacity:1}
-.hero img{width:100%;height:100%;object-fit:contain;display:block;--kb-time:7s;--kb-to:1.06}
+.hero img{width:100%;height:100%;object-fit:contain;display:block;--kb-time:6.5s;--kb-to:1.12}
 .hero-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;padding-block:14px 0}
 .cap{font:400 13px/1.4 var(--mono);color:var(--muted);letter-spacing:.04em}
 .cap b{font-weight:500;color:var(--fg)}
@@ -143,8 +143,8 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
 .ov-x svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.6;fill:none}
 .lb-stage{flex:1;min-height:0;position:relative;display:grid;place-items:center;overflow:hidden}
 /* slow zoom ("Ken Burns"): a gentle push-in on full-size photos; switched off for reduced motion */
-@keyframes kb{from{transform:scale(1)}to{transform:scale(var(--kb-to,1.08))}}
-.kb{animation:kb var(--kb-time,14s) cubic-bezier(.25,.45,.45,1) forwards;transform-origin:var(--kb-focus,50% 50%);will-change:transform}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(var(--kb-to,1.15))}}
+.kb{animation:kb var(--kb-time,12s) cubic-bezier(.25,.45,.45,1) forwards;transform-origin:var(--kb-focus,50% 50%);will-change:transform}
 .lb-stage img{max-width:100%;max-height:100%;object-fit:contain}
 .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:64px;display:grid;place-items:center;color:var(--scrim-fg);opacity:.75}
 .lb-nav:hover{opacity:1}
@@ -819,7 +819,7 @@ function buildSlides(){
 function showGo(n){
   const f=$("showFrame");
   si=(n+slides.length)%slides.length;
-  const next=document.createElement("figure"); next.innerHTML=`<img class="kb" style="--kb-time:6.5s;--kb-to:1.06;--kb-focus:${slides[si].f}" src="${slides[si].src}" alt="">`;
+  const next=document.createElement("figure"); next.innerHTML=`<img class="kb" style="--kb-time:6.5s;--kb-to:1.12;--kb-focus:${slides[si].f}" src="${slides[si].src}" alt="">`;
   f.appendChild(next); requestAnimationFrame(()=>next.classList.add("on"));
   [...f.children].slice(0,-2).forEach(x=>x.remove());
   if(f.children.length>1) f.children[0].classList.remove("on");
