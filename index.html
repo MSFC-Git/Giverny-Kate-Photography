@@ -42,7 +42,7 @@ p{margin:0}
 /* header */
 header.site{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 32px;padding-block:28px 22px}
 .brand{text-decoration:none;display:grid;gap:4px}
-.brand b{font:400 clamp(22px,3vw,28px)/1 var(--display);letter-spacing:.22em;text-transform:uppercase}
+.brand b{font:400 clamp(17px,2.6vw,26px)/1.15 var(--display);letter-spacing:.2em;text-transform:uppercase}
 .brand span{font:400 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 nav.main{display:flex;flex-wrap:wrap;gap:6px 26px}
 nav.main a{text-decoration:none;font-size:14px;letter-spacing:.06em;color:var(--muted);padding-block:4px;border-bottom:1px solid transparent}
@@ -126,6 +126,8 @@ section.view[hidden]{display:none}
 .figure img{width:100%;display:block}
 .note{font:400 12px/1.6 var(--mono);color:var(--muted);letter-spacing:.02em;padding:14px 16px;border:1px solid var(--line)}
 .coords{font:400 12px var(--mono);letter-spacing:.12em;color:var(--muted)}
+.policy ul{margin:0;padding-left:20px;display:grid;gap:4px;color:var(--muted)}
+.policy .lead strong{font:400 19px/1.4 var(--display);letter-spacing:.01em}
 
 footer.site{border-top:1px solid var(--line);padding-block:26px 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-size:13px;color:var(--muted)}
 footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
@@ -139,7 +141,10 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
 .ov-top .cap b{color:var(--scrim-fg)}
 .ov-x{width:44px;height:44px;display:grid;place-items:center;color:var(--scrim-fg)}
 .ov-x svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.6;fill:none}
-.lb-stage{flex:1;min-height:0;position:relative;display:grid;place-items:center}
+.lb-stage{flex:1;min-height:0;position:relative;display:grid;place-items:center;overflow:hidden}
+/* slow zoom ("Ken Burns"): a gentle push-in on full-size photos; switched off for reduced motion */
+@keyframes kb{from{transform:scale(1)}to{transform:scale(var(--kb-to,1.05))}}
+.kb{animation:kb var(--kb-time,18s) cubic-bezier(.33,0,.4,1) forwards;transform-origin:var(--kb-focus,50% 50%);will-change:transform}
 .lb-stage img{max-width:100%;max-height:100%;object-fit:contain}
 .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:64px;display:grid;place-items:center;color:var(--scrim-fg);opacity:.75}
 .lb-nav:hover{opacity:1}
@@ -171,11 +176,19 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
 .plist button[aria-current="true"]{font-weight:600}
 .plist button[aria-current="true"] span{color:var(--accent)}
 .small{font-size:13px;color:var(--muted)}
+.buyrow{display:grid;grid-template-columns:1fr auto;gap:8px}
+.qrbtn{width:46px;display:grid;place-items:center;border:1px solid var(--line);color:var(--muted)}
+.qrbtn:hover,.qrbtn[aria-expanded="true"]{border-color:var(--fg);color:var(--fg)}
+.qrbtn svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.4;fill:none}
+.pvqr{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center;padding:12px;border:1px solid var(--line)}
+.pvqr[hidden]{display:none}
+#pvQRCode{width:120px;height:120px;background:#fff;padding:6px;box-sizing:border-box}
+#pvQRCode svg{width:100%;height:100%;display:block}
 
 /* stall slideshow */
 .show{position:fixed;inset:0;z-index:70;background:#0c0f10;color:#eef1f0;display:grid;grid-template-rows:1fr auto}
 .show[hidden]{display:none}
-.show .frame{position:relative;min-height:0}
+.show .frame{position:relative;min-height:0;overflow:hidden}
 .show figure{position:absolute;inset:0;margin:0;display:grid;place-items:center;opacity:0;transition:opacity 1.4s}
 .show figure.on{opacity:1}
 .show figure img{max-width:100%;max-height:100%;object-fit:contain}
@@ -183,6 +196,10 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
   padding:16px max(20px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px));border-top:1px solid #253033}
 .show .strip b{font:400 clamp(18px,2.4vw,28px)/1.2 var(--display);letter-spacing:.14em;text-transform:uppercase}
 .show .strip span{font:400 clamp(13px,1.4vw,17px)/1.4 var(--mono);color:#aab4b6}
+.show .showqr{display:flex;align-items:center;gap:10px;margin-left:auto}
+.show .showqr span{font:400 10px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#7d888a;text-align:right}
+.show .showqr div{width:76px;height:76px;padding:7px;box-sizing:border-box;background:#e8eceb}
+.show .showqr svg{width:100%;height:100%;display:block}
 .show .ov-x{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));right:max(10px,env(safe-area-inset-right,0px));z-index:2;color:#eef1f0}
 
 /* provenance captions */
@@ -250,6 +267,7 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
 }
 @media (prefers-reduced-motion:reduce){
   .hero figure,.card .stage img,.show figure{transition:none}
+  .kb{animation:none}
   html{scroll-behavior:auto}
 }
 </style>
@@ -259,7 +277,7 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
 
 <div class="wrap">
   <header class="site">
-    <a class="brand" href="#home" data-go="home"><b>Giverny Kate</b><span>Nature &amp; wildlife photography · Ōtepoti Dunedin</span></a>
+    <a class="brand" href="#home" data-go="home"><b>Giverny Kate Photography</b><span>Nature &amp; wildlife · Ōtepoti Dunedin</span></a>
     <nav class="main" aria-label="Main">
       <a href="#home" data-go="home">Home</a>
       <a href="#gallery" data-go="gallery">Galleries</a>
@@ -415,6 +433,8 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
       <div class="cols">
         <div class="prose">
           <p>Giverny Kate is a nature and wildlife photographer based in Ōtepoti Dunedin, on New Zealand's Otago coast. Her work follows the animals and places close to home: albatross and petrels riding the swell, sea lion pups on the beach, bellbirds in the bush, and the light over Otago's hills.</p>
+          <h2>Genuine photography</h2>
+          <p>Every image here began as a real photograph taken with a camera. Read how photographs are edited, and how any use of AI is disclosed, in the <a href="#policy" data-go="policy">Photography and AI Transparency Policy</a>.</p>
           <h2>Buying a print or gift</h2>
           <p>Her photographs are printed to order through her <a href="https://www.redbubble.com/people/GivernyKate/shop" target="_blank" rel="noopener">Redbubble shop</a> and posted worldwide.</p>
           <h2>Contact</h2>
@@ -426,11 +446,45 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
         </figure>
       </div>
     </section>
+    <!-- PHOTOGRAPHY & AI POLICY (linked from the footer and About; not in the main menu) -->
+    <section class="view" id="v-policy" hidden>
+      <div class="head"><div><p class="eyebrow">Photography &amp; AI</p><h1 style="margin-top:8px">Our Photography and AI Transparency Policy</h1></div></div>
+      <div class="prose policy">
+        <p class="lead"><strong>Authentic photography. Professional enhancement. Complete transparency.</strong></p>
+        <p>We believe in the value of authentic photography and believe our customers have the right to know how the images appearing on our products have been created.</p>
+        <p>Our images originate from genuine photographs captured using conventional cameras. We do not represent artificially generated images as original photography.</p>
+        <h2>Professional photographic enhancement</h2>
+        <p>Our photographs may be professionally enhanced and refined using conventional photographic editing software, including Adobe Photoshop, Lightroom and similar applications.</p>
+        <p>This may include:</p>
+        <ul>
+          <li>Colour correction and tonal adjustments.</li>
+          <li>Brightness, contrast and exposure correction.</li>
+          <li>Cropping, resizing and sharpening.</li>
+          <li>Removal of photographic imperfections.</li>
+          <li>Retouching and restoration.</li>
+          <li>Other conventional photographic enhancement techniques.</li>
+        </ul>
+        <p>These are established photographic post-production techniques and do not constitute AI-generated imagery.</p>
+        <h2>Artificial Intelligence (AI) enhancement</h2>
+        <p>We recognise that AI technology is increasingly being used in modern photographic editing. Where an image has been enhanced, modified or materially altered using AI tools, we will clearly identify that image as AI-enhanced.</p>
+        <p>This disclosure may apply to AI-assisted image restoration, enhancement, background modification, object removal, image extension or the addition of visual elements. Where applicable, our product descriptions will identify the use of AI so customers can make an informed purchasing decision.</p>
+        <h2>Our commitment</h2>
+        <p>Our commitment is straightforward:</p>
+        <ul>
+          <li>Authentic photographic origins.</li>
+          <li>Professional photographic enhancement is permitted.</li>
+          <li>AI-assisted enhancement is disclosed.</li>
+          <li>No artificial imagery is misrepresented as genuine photography.</li>
+        </ul>
+        <p>We believe transparency builds trust and that our customers should always know what they are purchasing.</p>
+        <p class="lead"><strong>Genuine photography. Professional craftsmanship. Honest disclosure.</strong></p>
+      </div>
+    </section>
   </main>
 
   <footer class="site">
     <span>© Giverny Kate Photography · All photographs are the photographer's own and may not be reproduced without permission.</span>
-    <a href="https://www.redbubble.com/people/GivernyKate/shop" target="_blank" rel="noopener">Redbubble shop ↗</a>
+    <span style="display:flex;flex-wrap:wrap;gap:8px 24px"><a href="#policy" data-go="policy">Photography &amp; AI policy</a><a href="https://www.redbubble.com/people/GivernyKate/shop" target="_blank" rel="noopener">Redbubble shop ↗</a></span>
   </footer>
 </div>
 
@@ -460,7 +514,11 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
     <div class="pv-side">
       <div><p class="eyebrow" id="pvCol"></p><h2 id="pvTitle" style="margin-top:8px"></h2><p class="prov" id="pvProv" style="margin-top:8px"></p></div>
       <ul class="plist" id="pvList"></ul>
-      <a class="btn solid" id="pvBuy" href="#" target="_blank" rel="noopener" style="justify-content:center">Order on Redbubble ↗</a>
+      <div class="buyrow">
+        <a class="btn solid" id="pvBuy" href="#" target="_blank" rel="noopener" style="justify-content:center">Order on Redbubble ↗</a>
+        <button class="qrbtn" id="pvQRBtn" aria-expanded="false" aria-controls="pvQR" aria-label="Show a QR code to order on your phone" title="Order on your phone"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3h5v5H3zM12 3h5v5h-5zM3 12h5v5H3zM12 12h2v2h-2zM15 15h2v2h-2zM12 15.5v1.5M15.5 12H17"/></svg></button>
+      </div>
+      <div class="pvqr" id="pvQR" hidden><div id="pvQRCode"></div><p class="small">Scan with your phone camera to open this photograph's order page and carry on there.</p></div>
       <details class="giftnote">
         <summary>Send as a gift</summary>
         <ol>
@@ -479,7 +537,7 @@ footer.site a{text-decoration:none;border-bottom:1px solid var(--line)}
 <div class="show" id="show" hidden role="dialog" aria-modal="true" aria-label="Stall slideshow">
   <button class="ov-x" id="showClose" aria-label="Close slideshow"><svg viewBox="0 0 20 20"><path d="M4 4l12 12M16 4 4 16"/></svg></button>
   <div class="frame" id="showFrame"></div>
-  <div class="strip"><b>Giverny Kate Photography</b><div><span id="showCap">Every photograph on every product · printed to order and posted to your home</span><span class="prov" id="showProv"></span></div></div>
+  <div class="strip"><b>Giverny Kate Photography</b><div><span id="showCap">Every photograph on every product · printed to order and posted to your home</span><span class="prov" id="showProv"></span></div><div class="showqr"><span>Scan<br>to order</span><div id="showQR" aria-label="QR code for this photograph's order page" role="img"></div></div></div>
 </div>
 
 <script src="qrcode.js"></script>
@@ -498,6 +556,7 @@ const COLLECTIONS = {
 /* PROVENANCE: each photo can carry
      sp  = species (English)     mi  = te reo Māori name
      loc = where it was taken    yr  = year taken
+     f   = optional slow-zoom focus point, e.g. "60% 40%" (across, down); centre if left out
    The caption under each photograph is built from whichever of these are filled in; blanks are simply left out.
    Species below were identified from the images by Claude, not by the photographer. Giverny should confirm every
    one, and add loc and yr. See PROVENANCE-CHECKLIST.md. */
@@ -545,7 +604,17 @@ const PHOTOS = [
   {s:"bird-in-berries",              t:"In the Berries",         c:"bush",  sp:"", mi:"", loc:"", yr:""},
   {s:"fern-1",                       t:"Koru I",                 c:"land",  sp:"", mi:"", loc:"", yr:""},
   {s:"fern-2",                       t:"Koru II",                c:"land",  sp:"", mi:"", loc:"", yr:""},
-  {s:"fern-3",                       t:"Koru III",               c:"land",  sp:"", mi:"", loc:"", yr:""}
+  {s:"fern-3",                       t:"Koru III",               c:"land",  sp:"", mi:"", loc:"", yr:""},
+  /* added 31 October 2026 */
+  {s:"albatross-landing-1",          t:"Albatross Landing",      c:"sea",   sp:"Shy-type albatross", mi:"toroa", loc:"", yr:""},
+  {s:"mr-and-mrs-albatross",         t:"Mr and Mrs Albatross",   c:"sea",   sp:"Albatross", mi:"toroa", loc:"", yr:""},
+  {s:"gannet-1",                     t:"Gannet in Flight",       c:"sea",   sp:"Australasian gannet", mi:"tākapu", loc:"", yr:""},
+  {s:"gannet-at-sunset",             t:"Gannet at Sunset",       c:"sea",   sp:"Australasian gannet", mi:"tākapu", loc:"", yr:""},
+  {s:"crowded-house-1",              t:"Crowded House",          c:"sea",   sp:"Australasian gannet colony", mi:"tākapu", loc:"", yr:""},
+  {s:"ole-blue-eyes-1",              t:"Ole Blue Eyes",          c:"sea",   sp:"Spotted shag", mi:"pārekareka", loc:"", yr:""},
+  {s:"gull-1",                       t:"Wings Raised",           c:"sea",   sp:"", mi:"", loc:"", yr:""},
+  {s:"morepork-1",                   t:"Ruru · Morepork I",      c:"bush",  sp:"Morepork", mi:"ruru", loc:"", yr:""},
+  {s:"morepork-2",                   t:"Ruru · Morepork II",     c:"bush",  sp:"Morepork", mi:"ruru", loc:"", yr:""}
 ];
 
 /* TAKE HOME TODAY: the small items Giverny actually has in stock at the stall.
@@ -585,7 +654,7 @@ const provHTML = p => { const t=provText(p); return t ? `<span class="prov">${es
 const orderLink = (s,k) => SITE_URL + "#p/" + s + (k ? "/" + k : "");
 
 /* ---------- views ---------- */
-const VIEWS = ["home","gallery","shop","today","market","about","qr"];
+const VIEWS = ["home","gallery","shop","today","market","about","qr","policy"];
 function show(v, scroll=true){
   if(v.startsWith("p/")){ const [,s,k]=v.split("/"); if(bySlug[s]){ show("shop",false); const j=PRODUCTS.findIndex(x=>x.k===k); openPV(s, j>=0?j+1:0); return; } v="shop"; }
   if(!VIEWS.includes(v)) v="home";
@@ -659,7 +728,8 @@ function openLB(i, list){
 }
 function lbShow(){
   const p=bySlug[lbList[lbi]];
-  $("lbImg").src=photo(p.s); $("lbImg").alt=p.t;
+  const im=$("lbImg"); im.classList.remove("kb"); im.style.setProperty("--kb-focus", p.f||"50% 50%");
+  im.src=photo(p.s); im.alt=p.t; void im.offsetWidth; im.classList.add("kb");
   $("lbCap").innerHTML=`<b>${esc(p.t)}</b> · ${COLLECTIONS[p.c]}${provHTML(p)}`;
   $("lbCount").textContent=`${lbi+1} / ${lbList.length}`;
 }
@@ -716,6 +786,7 @@ function openPV(s, i=0){
   const v=pvViews(s);
   $("pvThumbs").innerHTML=v.map((x,j)=>`<button data-j="${j}" aria-label="${x.name}"><img src="${j?x.src:thumb(s)}" alt=""></button>`).join("");
   $("pvList").innerHTML=PRODUCTS.map((pr,j)=>`<li><button data-j="${j+1}">${pr.n}<span>View</span></button></li>`).join("");
+  $("pvQR").hidden=true; $("pvQRBtn").setAttribute("aria-expanded","false");
   pvShow(); $("pv").hidden=false; $("pv").scrollTop=0; document.body.style.overflow="hidden"; $("pvClose").focus();
 }
 function pvShow(){
@@ -724,30 +795,35 @@ function pvShow(){
   $("pvImg").style.objectFit = pvi===0 ? "contain" : "cover";
   $("pvThumbs").querySelectorAll("button").forEach((b,j)=>b.setAttribute("aria-current", j===pvi?"true":"false"));
   $("pvList").querySelectorAll("button").forEach(b=>{const on=+b.dataset.j===pvi; b.setAttribute("aria-current",on?"true":"false"); b.querySelector("span").textContent=on?"Showing":"View";});
+  if(!$("pvQR").hidden) pvQRDraw();
 }
 ["pvThumbs","pvList"].forEach(id=>$(id).addEventListener("click",e=>{const b=e.target.closest("button[data-j]"); if(b){pvi=+b.dataset.j;pvShow();}}));
 $("pvPrev").onclick=()=>{pvi=(pvi+6)%7;pvShow()};
 $("pvNext").onclick=()=>{pvi=(pvi+1)%7;pvShow()};
 $("pvClose").onclick=closeAll;
+/* the code follows the product on screen: the photograph itself, or that product */
+function pvQRDraw(){ const k = pvi>0 ? PRODUCTS[pvi-1].k : null; $("pvQRCode").innerHTML=qrSVG(orderLink(pvS,k)); }
+$("pvQRBtn").onclick=()=>{ const open=$("pvQR").hidden; $("pvQR").hidden=!open; $("pvQRBtn").setAttribute("aria-expanded", open?"true":"false"); if(open) pvQRDraw(); };
 
 /* ---------- stall slideshow: photo, then that photo on two products ---------- */
 let showTimer=null, si=0, slides=[];
 function buildSlides(){
   slides=[]; const ks=PRODUCTS.map(p=>p.k);
   PHOTOS.forEach((p,i)=>{
-    slides.push({src:photo(p.s), cap:`${p.t} · ${COLLECTIONS[p.c]}`, prov:provText(p)});
+    slides.push({src:photo(p.s), cap:`${p.t} · ${COLLECTIONS[p.c]}`, prov:provText(p), s:p.s, k:"", f:p.f||"50% 50%"});
     const a=ks[i%6], b=ks[(i+3)%6];
-    [a,b].forEach(k=>slides.push({src:merch(p.s,k), cap:`${p.t} · ${PRODUCTS.find(x=>x.k===k).n} · printed to order and posted home`, prov:provText(p)}));
+    [a,b].forEach(k=>slides.push({src:merch(p.s,k), cap:`${p.t} · ${PRODUCTS.find(x=>x.k===k).n} · printed to order and posted home`, prov:provText(p), s:p.s, k, f:"50% 50%"}));
   });
 }
 function showGo(n){
   const f=$("showFrame");
   si=(n+slides.length)%slides.length;
-  const next=document.createElement("figure"); next.innerHTML=`<img src="${slides[si].src}" alt="">`;
+  const next=document.createElement("figure"); next.innerHTML=`<img class="kb" style="--kb-time:7s;--kb-to:1.04;--kb-focus:${slides[si].f}" src="${slides[si].src}" alt="">`;
   f.appendChild(next); requestAnimationFrame(()=>next.classList.add("on"));
   [...f.children].slice(0,-2).forEach(x=>x.remove());
   if(f.children.length>1) f.children[0].classList.remove("on");
   $("showCap").textContent=slides[si].cap; $("showProv").textContent=slides[si].prov||"";
+  $("showQR").innerHTML=qrSVG(orderLink(slides[si].s, slides[si].k||null));
   const pre=new Image(); pre.src=slides[(si+1)%slides.length].src;
 }
 $("startShow").onclick=()=>{

@@ -20,3 +20,7 @@ Pages:
 - `#today` - Take home today: items in stock at the stall
 - `#qr` - printable QR cards (linked from At the market; not in the main menu). Print to A4, 8 cards per sheet.
 - `#p/<photo>` or `#p/<photo>/<product>` - opens a photo's order page directly (what the QR codes point to)
+- `#policy` - Photography and AI Transparency Policy (linked from the footer and the About page; not in the main menu)
+
+Full-size photos open with a slow zoom (about 5%). To aim the zoom at the subject, give the photo an `f` value in `PHOTOS`, e.g. `f:"60% 40%"` (across, down).
+On a phone or tablet set to reduce motion, the zoom is switched off.

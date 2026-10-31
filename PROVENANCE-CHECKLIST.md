@@ -55,6 +55,27 @@ Fine for the website, cards and postcards. Too small for canvas or framed prints
 at 150 dots per inch, the usual minimum for print, 1418 pixels prints only about 24 cm wide.
 Upload the full-resolution originals to Redbubble, not these files.
 
+## Added 31 October 2026 — please confirm
+
+Species and titles below were filled in by Claude from the images. Titles are drafts; change any you like.
+
+| File | Title | sp | mi | Note |
+|---|---|---|---|---|
+| albatross-landing-1 | Albatross Landing | Shy-type albatross | toroa | Confirm species |
+| mr-and-mrs-albatross | Mr and Mrs Albatross | Albatross | toroa | Which species? |
+| gannet-1 | Gannet in Flight | Australasian gannet | tākapu | Place? (e.g. a gannet colony) |
+| gannet-at-sunset | Gannet at Sunset | Australasian gannet | tākapu | |
+| crowded-house-1 | Crowded House | Australasian gannet colony | tākapu | Confirm the colony birds are gannets |
+| ole-blue-eyes-1 | Ole Blue Eyes | Spotted shag | pārekareka | Confirm species |
+| gull-1 | Wings Raised | (blank) | | File was named "Gull", but it looks more like a petrel or a juvenile gull. Please identify. |
+| morepork-1, morepork-2 | Ruru · Morepork I, II | Morepork | ruru | |
+
+Not added (from the CruiseShip folder): Crowded House 2.png and Gannet At Sunset 2.png (alternative versions;
+the sunset one has a stray green dot), Elephant Seal.jpg (a picture of a print, 600 px), the two morepork feather
+PNGs (about 400 px wide, too small), Fern 7.jpg (same image as fern-1), and "Penguin at night.html" (a saved web page).
+Albatross White Water Take Off, Bellbird on Flax Flower, Bellbird Pollen Face 1 and TwoSealsSnuggling 1 are already on
+the site under their earlier file names.
+
 ## Example of a finished entry
 
 ```
